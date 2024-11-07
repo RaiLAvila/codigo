@@ -1,0 +1,61 @@
+#include <iostream>
+using namespace std;
+
+class Forma {
+protected:
+    int largura, altura, raio;
+public:
+    virtual void set_values(int a, int b, int c) {
+        largura = a;
+        altura = b;
+        raio = c;
+    }
+    virtual int area() = 0;      
+    virtual int perimetro() = 0; 
+};
+class Retangulo : public Forma {
+public:
+    int area() override {
+        return largura * altura;
+    }
+    int perimetro() override {
+        return (largura + altura) * 2;
+    }
+};
+class Triangulo : public Forma {
+public:
+    int area() override {
+        return largura * altura / 2;
+    }
+    int perimetro() override {
+        return largura * 3;
+    }
+};
+class Circulo : public Forma {
+public:
+    int area() override {
+        return 3.14 * (raio * raio); 
+    }
+    int perimetro() override {
+        return 2 * 3.14 * raio; 
+    }
+};
+ 
+int main(){
+ Retangulo ret;
+    ret.set_values(7, 5, 0); 
+    Triangulo tri;
+    tri.set_values(4, 6, 0); 
+    Circulo circ;
+    circ.set_values(0, 0, 3);
+    cout << "Retângulo: " << endl;
+    cout << "Área: " << ret.area() << ", Perímetro: " << ret.perimetro() << endl;
+
+    cout << "Triângulo: " << endl;
+    cout << "Área: " << tri.area() << ", Perímetro: " << tri.perimetro() << endl;
+
+    cout << "Círculo: " << endl;
+    cout << "Área: " << circ.area() << ", Perímetro: " << circ.perimetro() << endl;
+
+    return 0;
+}
